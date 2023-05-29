@@ -93,23 +93,23 @@ class TagParsingTest {
         BooleanEncodedValue bikeAccessEnc = VehicleAccess.create("bike");
         DecimalEncodedValue bikeSpeedEnc = VehicleSpeed.create("bike", 4, 2, false);
         DecimalEncodedValue bikePriorityEnc = VehiclePriority.create("bike", 4, PriorityCode.getFactor(1), false);
-        BooleanEncodedValue mtbAccessEnc = VehicleAccess.create("mtb");
-        DecimalEncodedValue mtbSpeedEnc = VehicleSpeed.create("mtb", 4, 2, false);
-        DecimalEncodedValue mtbPriorityEnc = VehiclePriority.create("mtb", 4, PriorityCode.getFactor(1), false);
+        BooleanEncodedValue mountainbikeAccessEnc = VehicleAccess.create("mountainbike");
+        DecimalEncodedValue mountainbikeSpeedEnc = VehicleSpeed.create("mountainbike", 4, 2, false);
+        DecimalEncodedValue mountainbikePriorityEnc = VehiclePriority.create("mountainbike", 4, PriorityCode.getFactor(1), false);
         EnumEncodedValue<RouteNetwork> bikeNetworkEnc = RouteNetwork.create(BikeNetwork.KEY);
         EncodingManager em = EncodingManager.start()
                 .add(bikeAccessEnc).add(bikeSpeedEnc).add(bikePriorityEnc)
-                .add(mtbAccessEnc).add(mtbSpeedEnc).add(mtbPriorityEnc)
+                .add(mountainbikeAccessEnc).add(mountainbikeSpeedEnc).add(mountainbikePriorityEnc)
                 .add(bikeNetworkEnc)
                 .add(Smoothness.create())
                 .build();
         BikePriorityParser bikeTagParser = new BikePriorityParser(em, new PMap());
-        MountainBikePriorityParser mtbTagParser = new MountainBikePriorityParser(em, new PMap());
+        MountainBikePriorityParser mountainbikeTagParser = new MountainBikePriorityParser(em, new PMap());
         OSMParsers osmParsers = new OSMParsers()
                 .addRelationTagParser(relConfig -> new OSMBikeNetworkTagParser(bikeNetworkEnc, relConfig))
                 .addWayTagParser(new OSMRoadClassParser(em.getEnumEncodedValue(RoadClass.KEY, RoadClass.class)))
                 .addWayTagParser(bikeTagParser)
-                .addWayTagParser(mtbTagParser);
+                .addWayTagParser(mountainbikeTagParser);
 
         // relation code for network rcn is NICE for bike and PREFER for mountainbike
         osmRel.setTag("route", "bicycle");
@@ -120,8 +120,8 @@ class TagParsingTest {
         int edgeId = 0;
         osmParsers.handleWayTags(edgeId, edgeIntAccess, osmWay, relFlags);
         // bike: uninfluenced speed for grade but via network => NICE
-        // mtb: uninfluenced speed only PREFER
-        assertTrue(bikePriorityEnc.getDecimal(false, edgeId, edgeIntAccess) > mtbPriorityEnc.getDecimal(false, edgeId, edgeIntAccess));
+        // mountainbike: uninfluenced speed only PREFER
+        assertTrue(bikePriorityEnc.getDecimal(false, edgeId, edgeIntAccess) > mountainbikePriorityEnc.getDecimal(false, edgeId, edgeIntAccess));
     }
 
     @Test
@@ -129,13 +129,13 @@ class TagParsingTest {
         BooleanEncodedValue carAccessEnc = VehicleAccess.create("car");
         BooleanEncodedValue footAccessEnc = VehicleAccess.create("foot");
         BooleanEncodedValue bikeAccessEnc = VehicleAccess.create("bike");
-        BooleanEncodedValue mtbAccessEnc = VehicleAccess.create("mtb");
-        List<BooleanEncodedValue> accessEncs = Arrays.asList(carAccessEnc, footAccessEnc, bikeAccessEnc, mtbAccessEnc);
+        BooleanEncodedValue mountainbikeAccessEnc = VehicleAccess.create("mountainbike");
+        List<BooleanEncodedValue> accessEncs = Arrays.asList(carAccessEnc, footAccessEnc, bikeAccessEnc, mountainbikeAccessEnc);
         EncodingManager manager = EncodingManager.start()
                 .add(carAccessEnc).add(VehicleSpeed.create("car", 5, 5, true))
                 .add(footAccessEnc).add(VehicleSpeed.create("foot", 4, 1, true)).add(VehiclePriority.create("foot", 4, PriorityCode.getFactor(1), false))
                 .add(bikeAccessEnc).add(VehicleSpeed.create("bike", 4, 2, false)).add(VehiclePriority.create("bike", 4, PriorityCode.getFactor(1), false))
-                .add(mtbAccessEnc).add(VehicleSpeed.create("mtb", 4, 2, false)).add(VehiclePriority.create("mtb", 4, PriorityCode.getFactor(1), false))
+                .add(mountainbikeAccessEnc).add(VehicleSpeed.create("mountainbike", 4, 2, false)).add(VehiclePriority.create("mountainbike", 4, PriorityCode.getFactor(1), false))
                 .add(RouteNetwork.create(FootNetwork.KEY))
                 .add(RouteNetwork.create(BikeNetwork.KEY))
                 .add(Smoothness.create())

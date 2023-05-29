@@ -63,7 +63,7 @@ public class VehicleTagParsers {
         );
     }
 
-    public static VehicleTagParsers mtb(EncodedValueLookup lookup, PMap properties) {
+    public static VehicleTagParsers mountainbike(EncodedValueLookup lookup, PMap properties) {
         return new VehicleTagParsers(
                 new MountainBikeAccessParser(lookup, properties).init(properties.getObject("date_range_parser", new DateRangeParser())),
                 new MountainBikeAverageSpeedParser(lookup, properties),
@@ -79,6 +79,14 @@ public class VehicleTagParsers {
         );
     }
 
+    public static VehicleTagParsers blind(EncodedValueLookup lookup, PMap properties) {
+        return new VehicleTagParsers(
+                new BlindAccessParser(lookup, properties).init(properties.getObject("date_range_parser", new DateRangeParser())),
+                new BlindAverageSpeedParser(lookup, properties),
+                new BlindPriorityParser(lookup, properties)
+        );
+    }
+
     public static VehicleTagParsers wheelchair(EncodedValueLookup lookup, PMap properties) {
         return new VehicleTagParsers(
                 new WheelchairAccessParser(lookup, properties).init(properties.getObject("date_range_parser", new DateRangeParser())),
@@ -86,6 +94,15 @@ public class VehicleTagParsers {
                 new WheelchairPriorityParser(lookup, properties)
         );
     }
+
+    public static VehicleTagParsers rollator(EncodedValueLookup lookup, PMap properties) {
+        return new VehicleTagParsers(
+                new RollatorAccessParser(lookup, properties).init(properties.getObject("date_range_parser", new DateRangeParser())),
+                new RollatorAverageSpeedParser(lookup, properties),
+                new RollatorPriorityParser(lookup, properties)
+        );
+    }
+
 
     public VehicleTagParsers(TagParser accessParser, TagParser speedParser, TagParser priorityParser) {
         this.accessParser = accessParser;

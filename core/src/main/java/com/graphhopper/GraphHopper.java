@@ -578,7 +578,7 @@ public class GraphHopper {
         String ignoredHighwaysString = ghConfig.getString("import.osm.ignored_highways", "");
         if ((ignoredHighwaysString.contains("footway") || ignoredHighwaysString.contains("path")) && ghConfig.getProfiles().stream().map(Profile::getName).anyMatch(p -> p.contains("foot") || p.contains("hike") || p.contains("wheelchair")))
             throw new IllegalArgumentException("You should not use import.osm.ignored_highways=footway or =path in conjunction with pedestrian profiles. This is probably an error in your configuration.");
-        if ((ignoredHighwaysString.contains("cycleway") || ignoredHighwaysString.contains("path")) && ghConfig.getProfiles().stream().map(Profile::getName).anyMatch(p -> p.contains("mtb") || p.contains("bike")))
+        if ((ignoredHighwaysString.contains("cycleway") || ignoredHighwaysString.contains("path")) && ghConfig.getProfiles().stream().map(Profile::getName).anyMatch(p -> p.contains("mountainbike") || p.contains("bike")))
             throw new IllegalArgumentException("You should not use import.osm.ignored_highways=cycleway or =path in conjunction with bicycle profiles. This is probably an error in your configuration");
 
         osmReaderConfig.setIgnoredHighways(Arrays.stream(ghConfig.getString("import.osm.ignored_highways", String.join(",", osmReaderConfig.getIgnoredHighways()))

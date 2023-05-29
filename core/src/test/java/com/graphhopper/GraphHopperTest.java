@@ -1722,7 +1722,7 @@ public class GraphHopperTest {
     @Test
     public void testCreateWeightingHintsMerging() {
         final String profile = "profile";
-        final String vehicle = "mtb";
+        final String vehicle = "mountainbike";
         final String weighting = "shortest";
 
         GraphHopper hopper = new GraphHopper().
@@ -2823,4 +2823,3 @@ public class GraphHopperTest {
     }
 
 }
-

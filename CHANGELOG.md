@@ -32,7 +32,7 @@
 ### 6.0 [13 Sep 2022]
 
 - Car4WDTagParser was removed. Use the roads vehicle with a custom model, see custom_models/car4wd.json see #2651
-- When using a DecimalEncodedValue with useMaximumAsInfinity=true and a single bit of space make sure you always use 
+- When using a DecimalEncodedValue with useMaximumAsInfinity=true and a single bit of space make sure you always use
   Double.POSITIVE_INFINITY to set the value, see #2646
 - renamed DouglasPeucker to RamerDouglasPeucker
 - path details at via-points are no longer merged, see #2626
@@ -77,7 +77,7 @@
 - removed RoadEnvironment.SHUTTLE_TRAIN. this is covered by `FERRY` (#2466)
 - create edge flags per edge, not per way. increases custom_area precision. areas are recognized by points along the
   edges now -> (#2457, #2472)
-- fixed handling of too large mtb:scale tags (#2458)
+- fixed handling of too large mountainbike:scale tags (#2458)
 - added Toll.MISSING; custom models must be adapted to check for explicit toll values e.g `toll != NO`
   -> `toll == HGV || toll == ALL` (#2164)
 - use GraphHopper#setGraphHopperLocation before calling load() instead of GraphHopper#load(graphHopperLocation) (#2437)

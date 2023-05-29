@@ -24,9 +24,9 @@ import com.graphhopper.storage.IntsRef;
 
 /**
  * Parses the mountain biking difficulty.
- * A mapping mtb:scale=0 corresponds to 1 and mtb:scale=1 to 2 until 7.
+ * A mapping mountainbike:scale=0 corresponds to 1 and mountainbike:scale=1 to 2 until 7.
  *
- * @see <a href="https://wiki.openstreetmap.org/wiki/Key:mtb:scale">Key:mtb:scale</a> for details on OSM mountain biking difficulties.
+ * @see <a href="https://wiki.openstreetmap.org/wiki/Key:mountainbike:scale">Key:mountainbike:scale</a> for details on OSM mountain biking difficulties.
  * @see <a href="http://www.singletrail-skala.de/">Single Trail Scale</a>
  */
 public class OSMMtbRatingParser implements TagParser {
@@ -38,7 +38,7 @@ public class OSMMtbRatingParser implements TagParser {
 
     @Override
     public void handleWayTags(int edgeId, EdgeIntAccess edgeIntAccess, ReaderWay readerWay, IntsRef relationFlags) {
-        String scale = readerWay.getTag("mtb:scale");
+        String scale = readerWay.getTag("mountainbike:scale");
         int rating = 0;
         if (scale != null) {
             if (scale.length() == 2 && (scale.charAt(1) == '+' || scale.charAt(1) == '-'))

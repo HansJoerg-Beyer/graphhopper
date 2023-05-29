@@ -9,7 +9,7 @@ import com.graphhopper.util.PMap;
 public class MountainBikeAccessParser extends BikeCommonAccessParser {
 
     public MountainBikeAccessParser(EncodedValueLookup lookup, PMap properties) {
-        this(lookup.getBooleanEncodedValue(VehicleAccess.key(properties.getString("name", "mtb"))),
+        this(lookup.getBooleanEncodedValue(VehicleAccess.key(properties.getString("name", "mountainbike"))),
                 lookup.getBooleanEncodedValue(Roundabout.KEY));
         blockPrivate(properties.getBool("block_private", true));
         blockFords(properties.getBool("block_fords", false));
@@ -21,7 +21,7 @@ public class MountainBikeAccessParser extends BikeCommonAccessParser {
 
     @Override
     boolean isSacScaleAllowed(String sacScale) {
-        // other scales are too dangerous even for MTB, see http://wiki.openstreetmap.org/wiki/Key:sac_scale
+        // other scales are too dangerous even for mountainbike, see http://wiki.openstreetmap.org/wiki/Key:sac_scale
         return "hiking".equals(sacScale) || "mountain_hiking".equals(sacScale)
                 || "demanding_mountain_hiking".equals(sacScale) || "alpine_hiking".equals(sacScale);
     }

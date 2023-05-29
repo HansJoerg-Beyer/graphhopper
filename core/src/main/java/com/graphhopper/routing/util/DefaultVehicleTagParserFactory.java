@@ -34,11 +34,15 @@ public class DefaultVehicleTagParserFactory implements VehicleTagParserFactory {
         if (name.equals(RACINGBIKE))
             return VehicleTagParsers.racingbike(lookup, configuration);
         if (name.equals(MOUNTAINBIKE))
-            return VehicleTagParsers.mtb(lookup, configuration);
+            return VehicleTagParsers.mountainbike(lookup, configuration);
         if (name.equals(FOOT))
             return VehicleTagParsers.foot(lookup, configuration);
         if (name.equals(WHEELCHAIR))
             return VehicleTagParsers.wheelchair(lookup, configuration);
+        if (name.equals(ROLLATOR))
+            return VehicleTagParsers.rollator(lookup, configuration);
+        if (name.equals(BLIND))
+            return VehicleTagParsers.blind(lookup, configuration);
 
         throw new IllegalArgumentException("Unknown name for vehicle tag parsers: " + name);
     }

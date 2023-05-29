@@ -60,6 +60,12 @@ public class DefaultVehicleEncodedValuesFactory implements VehicleEncodedValuesF
         if (name.equals(WHEELCHAIR))
             return VehicleEncodedValues.wheelchair(configuration);
 
+        if (name.equals(ROLLATOR))
+            return VehicleEncodedValues.rollator(configuration);
+
+        if (name.equals(BLIND))
+            return VehicleEncodedValues.blind(configuration);
+            
         throw new IllegalArgumentException("entry in vehicle list not supported: " + name);
     }
 }

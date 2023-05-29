@@ -1,7 +1,7 @@
 # do not edit manually, instead use spreadsheet https://t.co/f086oJXAEI and script ./core/files/update-translations.sh
 
 continue=استمر
-continue_onto=استمر في %1$s 
+continue_onto=استمر في %1$s
 finish=النهاية
 keep_left=احفظ الشمال
 keep_right=احفظ اليمين
@@ -16,7 +16,7 @@ u_turn=الدوران للإتجاه المعاكس
 toward_destination=
 toward_destination_ref_only=
 toward_destination_with_ref=
-unknown=علامة غير معرفة  '%1$s' 
+unknown=علامة غير معرفة  '%1$s'
 via=من خلال
 hour_abbr=ساعة
 day_abbr=يوم
@@ -107,7 +107,7 @@ web.search_with_nominatim=
 web.powered_by=
 web.bike=دراجة
 web.racingbike=دراجة سباق
-web.mtb=دراجة جبلية
+web.mountainbike=دراجة جبلية
 web.car=سيارة
 web.foot=مشياً
 web.hike=نزهة

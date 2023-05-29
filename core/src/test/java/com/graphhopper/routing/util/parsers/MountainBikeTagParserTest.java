@@ -40,7 +40,7 @@ public class MountainBikeTagParserTest extends AbstractBikeTagParserTester {
 
     @Override
     protected VehicleTagParsers createBikeTagParsers(EncodedValueLookup lookup, PMap pMap) {
-        return VehicleTagParsers.mtb(lookup, pMap);
+        return VehicleTagParsers.mountainbike(lookup, pMap);
     }
 
     @Test

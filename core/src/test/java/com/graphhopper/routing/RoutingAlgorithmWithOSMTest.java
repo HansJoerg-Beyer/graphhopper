@@ -306,7 +306,7 @@ public class RoutingAlgorithmWithOSMTest {
     @Test
     public void testNorthBayreuthHikeFastestAnd3D() {
         List<Query> queries = new ArrayList<>();
-        // prefer hiking route 'Teufelsloch Unterwaiz' and 'Rotmain-Wanderweg'        
+        // prefer hiking route 'Teufelsloch Unterwaiz' and 'Rotmain-Wanderweg'
         queries.add(new Query(49.974972, 11.515657, 49.991022, 11.512299, 2365, 67));
         // prefer hiking route 'Markgrafenweg Bayreuth Kulmbach' but avoid tertiary highway from Pechgraben
         queries.add(new Query(49.990967, 11.545258, 50.023182, 11.555386, 5636, 97));
@@ -402,21 +402,21 @@ public class RoutingAlgorithmWithOSMTest {
     @Test
     public void testMonacoMountainBike() {
         List<Query> queries = new ArrayList<>();
-        // for mtb it is also ok to go over steps (43.7318,7.423) -> 1900m vs 2600m (in latest OSM data all bikes are forbidden and steps aren't taken)
+        // for mountainbike it is also ok to go over steps (43.7318,7.423) -> 1900m vs 2600m (in latest OSM data all bikes are forbidden and steps aren't taken)
         queries.add(new Query(43.730864, 7.420771, 43.727687, 7.418737, 2594, 111));
         queries.add(new Query(43.727687, 7.418737, 43.74958, 7.436566, 3655, 185));
         queries.add(new Query(43.728677, 7.41016, 43.739213, 7.427806, 2651, 167));
-        // hard to select between secondary and primary (both are AVOID for mtb)
+        // hard to select between secondary and primary (both are AVOID for mountainbike)
         queries.add(new Query(43.733802, 7.413433, 43.739662, 7.424355, 1867, 107));
 
-        GraphHopper hopper = createHopper(MONACO, new CustomProfile("mtb").setVehicle("mtb"));
+        GraphHopper hopper = createHopper(MONACO, new CustomProfile("mountainbike").setVehicle("mountainbike"));
         hopper.importOrLoad();
         checkQueries(hopper, queries);
 
         Helper.removeDir(new File(GH_LOCATION));
 
         hopper = createHopper(MONACO,
-                new CustomProfile("mtb").setVehicle("mtb"),
+                new CustomProfile("mountainbike").setVehicle("mountainbike"),
                 new Profile("racingbike").setVehicle("racingbike").setWeighting("fastest"));
         hopper.importOrLoad();
         checkQueries(hopper, queries);
@@ -475,16 +475,16 @@ public class RoutingAlgorithmWithOSMTest {
         queries.add(new Query(48.410061, 15.63951, 48.411386, 15.604899, 3101, 94));
         queries.add(new Query(48.412294, 15.62007, 48.398306, 15.609667, 3965, 95));
 
-        GraphHopper hopper = createHopper(KREMS, new CustomProfile("mtb").
-                setCustomModel(new CustomModel().setDistanceInfluence(70d)).setVehicle("mtb"));
+        GraphHopper hopper = createHopper(KREMS, new CustomProfile("mountainbike").
+                setCustomModel(new CustomModel().setDistanceInfluence(70d)).setVehicle("mountainbike"));
         hopper.importOrLoad();
         checkQueries(hopper, queries);
 
         Helper.removeDir(new File(GH_LOCATION));
 
         hopper = createHopper(KREMS,
-                new CustomProfile("mtb").
-                        setCustomModel(new CustomModel().setDistanceInfluence(70d)).setVehicle("mtb"),
+                new CustomProfile("mountainbike").
+                        setCustomModel(new CustomModel().setDistanceInfluence(70d)).setVehicle("mountainbike"),
                 new Profile("bike").setVehicle("bike").setWeighting("fastest"));
         hopper.importOrLoad();
         checkQueries(hopper, queries);
@@ -533,8 +533,8 @@ public class RoutingAlgorithmWithOSMTest {
     public void testCampoGrande() {
         // test not only NE quadrant of earth!
 
-        // bzcat campo-grande.osm.bz2 
-        //   | ./bin/osmosis --read-xml enableDateParsing=no file=- --bounding-box top=-20.4 left=-54.6 bottom=-20.6 right=-54.5 --write-xml file=- 
+        // bzcat campo-grande.osm.bz2
+        //   | ./bin/osmosis --read-xml enableDateParsing=no file=- --bounding-box top=-20.4 left=-54.6 bottom=-20.6 right=-54.5 --write-xml file=-
         //   | bzip2 > campo-grande.extracted.osm.bz2
         List<Query> queries = new ArrayList<>();
         queries.add(new Query(-20.4001, -54.5999, -20.598, -54.54, 25323, 271));

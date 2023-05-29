@@ -438,7 +438,7 @@ public class GraphHopperOSMTest {
         assertFalse(grsp.hasErrors());
         rsp = grsp.getBest();
         assertEquals(2, rsp.getPoints().size());
-        // => found a point on edge A-B        
+        // => found a point on edge A-B
         assertEquals(11.680, rsp.getPoints().getLat(1), 1e-3);
         assertEquals(50.644, rsp.getPoints().getLon(1), 1e-3);
 
@@ -705,7 +705,7 @@ public class GraphHopperOSMTest {
                     setStoreOnFlush(false).
                     setProfiles(
                             new Profile("car_profile").setVehicle("car").setWeighting("fastest"),
-                            new Profile("mtb_profile").setVehicle("mtb").setWeighting("fastest"),
+                            new Profile("mountainbike_profile").setVehicle("mountainbike").setWeighting("fastest"),
                             new Profile("bike_profile").setVehicle("racingbike").setWeighting("fastest"),
                             new Profile("foot_profile").setVehicle("foot").setWeighting("fastest")
                     ).
@@ -714,7 +714,7 @@ public class GraphHopperOSMTest {
             hopper.getCHPreparationHandler()
                     .setCHProfiles(
                             new CHProfile("car_profile"),
-                            new CHProfile("mtb_profile"),
+                            new CHProfile("mountainbike_profile"),
                             new CHProfile("bike_profile"),
                             new CHProfile("foot_profile")
                     )
@@ -752,7 +752,7 @@ public class GraphHopperOSMTest {
                     setStoreOnFlush(false).
                     setProfiles(Arrays.asList(
                             new Profile("car_profile").setVehicle("car").setWeighting("fastest"),
-                            new Profile("mtb_profile").setVehicle("mtb").setWeighting("fastest"),
+                            new Profile("mountainbike_profile").setVehicle("mountainbike").setWeighting("fastest"),
                             new Profile("bike_profile").setVehicle("racingbike").setWeighting("fastest"),
                             new Profile("foot_profile").setVehicle("foot").setWeighting("fastest")
                     )).
@@ -761,7 +761,7 @@ public class GraphHopperOSMTest {
             hopper.getLMPreparationHandler().
                     setLMProfiles(
                             new LMProfile("car_profile"),
-                            new LMProfile("mtb_profile"),
+                            new LMProfile("mountainbike_profile"),
                             new LMProfile("bike_profile"),
                             new LMProfile("foot_profile")
                     ).

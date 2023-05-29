@@ -35,7 +35,7 @@ The vehicle field must correspond to one of GraphHopper's built-in vehicle types
 - wheelchair
 - bike
 - racingbike
-- mtb
+- mountainbike
 - car
 - motorcycle
 
@@ -50,7 +50,7 @@ weightings:
 - curvature (prefers routes with lots of curves for enjoyable motorcycle rides)
 - custom (enables custom profiles, see the next section)
 
-Another important profile setting is `turn_costs: true/false`. Use this to enable turn restrictions for each profile. 
+Another important profile setting is `turn_costs: true/false`. Use this to enable turn restrictions for each profile.
 You can learn more about this setting [here](./turn-restrictions.md)
 
 The profile name is used to select the profile when executing routing queries. To do this use the `profile` request
@@ -114,7 +114,7 @@ profiles_ch:
 # profiles you want to use with hybrid mode need to go here
 profiles_lm:
   - profile: car
-  - profile: some_other_profile 
+  - profile: some_other_profile
 ```
 
 The values given under `profile` are just the profile names you specified in the profile definitions. Note that 'CH' is
@@ -150,12 +150,12 @@ and the given profile must be a custom profile.
 Now you might be wondering which custom model is used, because there is one set for the route request, but there is also
 the one given for the profile that we specify via the `profile` parameter. The answer is "both" as the two custom models
 are merged into one. The two custom models are merged by appending all expressions of the query custom model to the
-server-side custom model. The `distance_influence` of the query custom model overwrites the one from the server-side 
+server-side custom model. The `distance_influence` of the query custom model overwrites the one from the server-side
 custom model *unless* it is not specified.
 
-And if the hybrid mode is used (using Landmarks not just Dijkstra or A*) the merge process has to ensure that all 
-weights resulting from the merged custom model are equal or larger than those of the base profile that was used during 
-the preparation process (this is necessary to maintain the optimality of the underlying routing algorithm). This leads 
+And if the hybrid mode is used (using Landmarks not just Dijkstra or A*) the merge process has to ensure that all
+weights resulting from the merged custom model are equal or larger than those of the base profile that was used during
+the preparation process (this is necessary to maintain the optimality of the underlying routing algorithm). This leads
 to two limitations while merging:
 * for the query custom model all values of `multiply_by` need to be within the range of `[0, 1]` otherwise an error will be thrown
 * the `distance_influence` of the query custom model must not be smaller than the existing one.
@@ -247,5 +247,3 @@ You do not necessarily need to define a proper custom model on the server side, 
 value `custom_model_files: []` or `custom_model: {}`, which means an empty custom model containing no
 statements will be used on the server-side. This way you can leave it entirely up to the user/client how the custom
 model shall look like.
-
-

@@ -170,12 +170,12 @@ public class EncodingManager implements EncodedValueLookup {
                     MaxSpeed.KEY,
                     RoadAccess.KEY
             ));
-            if (em.getVehicles().stream().anyMatch(vehicle -> vehicle.contains("bike") || vehicle.contains("mtb") || vehicle.contains("racingbike"))) {
+            if (em.getVehicles().stream().anyMatch(vehicle -> vehicle.contains("bike") || vehicle.contains("mountainbike") || vehicle.contains("racingbike"))) {
                 keys.add(BikeNetwork.KEY);
                 keys.add(GetOffBike.KEY);
                 keys.add(Smoothness.KEY);
             }
-            if (em.getVehicles().stream().anyMatch(vehicle -> vehicle.contains("foot") || vehicle.contains("hike") || vehicle.contains("wheelchair")))
+            if (em.getVehicles().stream().anyMatch(vehicle -> vehicle.contains("foot") || vehicle.contains("hike") || vehicle.contains("blind") || vehicle.contains("rollator") || vehicle.contains("wheelchair")))
                 keys.add(FootNetwork.KEY);
 
             DefaultEncodedValueFactory evFactory = new DefaultEncodedValueFactory();

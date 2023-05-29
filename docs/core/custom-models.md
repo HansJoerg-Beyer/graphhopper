@@ -146,7 +146,7 @@ Here is a complete request example for a POST /route query in berlin that includ
     ],
     "distance_influence": 100
   }
-} 
+}
 ```
 
 Note that this only works for custom profiles and so far only for POST /route (but not GET /route or /isochrone, /spt or
@@ -260,7 +260,7 @@ inequality) operators, but the numerical comparison operators "bigger" `>`, "big
     }
   ]
 }
-``` 
+```
 
 which means that for all edges with `max_width` smaller than `2.5m` the speed is multiplied by `0.8`.
 
@@ -551,7 +551,7 @@ blocked.
 ### The value expression
 
 The value of `limit_to` or `multiply_by` is usually only a number but can be more complex expression like `max_speed`
-or even something like `max_speed + 0.5`. In general one encoded value is accepted in combination with one or more 
+or even something like `max_speed + 0.5`. In general one encoded value is accepted in combination with one or more
 operations with a number and the operator `+`, `*` and `-`.
 
 This can be useful to reduce the speed of the base profile to a dynamic value. See e.g. the following example:
@@ -566,7 +566,7 @@ This can be useful to reduce the speed of the base profile to a dynamic value. S
 
 This limits the speed on all roads to 90% of the maximum speed value if it exists.
 
-Or you could use the following statements for a truck profile that needs a car-like speed but for faster roads the truck 
+Or you could use the following statements for a truck profile that needs a car-like speed but for faster roads the truck
 should be 10% slower and the maximum should be 100km/h:
 
 ```json
@@ -591,7 +591,7 @@ You can use a value expression also for `priority`, e.g. to pre-populated it bas
 }
 ```
 
-Note that when using a dynamic value like `my_precalculated_value` the maximum value correlates strongly with 
+Note that when using a dynamic value like `my_precalculated_value` the maximum value correlates strongly with
 the response time of A-star routing requests (i.e. when CH and LM are disabled). This means that if you pick a
 smaller or more narrow range, or if you can avoid them entirely, then these requests might get faster.
 
@@ -604,6 +604,6 @@ use the `distance_influence` property of the custom value like this:
 {
   "distance_influence": 100
 }
-``` 
+```
 
 If you do not use this property, GraphHopper will use the default value which is `70`.

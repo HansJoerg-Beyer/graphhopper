@@ -61,9 +61,9 @@ class OSMMtbRatingParserTest {
         int edgeId = 0;
         ReaderWay way = new ReaderWay(0);
         if (scaleString != null)
-            way.setTag("mtb:scale", scaleString);
+            way.setTag("mountainbike:scale", scaleString);
         parser.handleWayTags(edgeId, edgeIntAccess, way, new IntsRef(2));
-        assertEquals(expectedRating, ev.getInt(false, edgeId, edgeIntAccess), "unexpected rating for mtb:scale=" + scaleString);
+        assertEquals(expectedRating, ev.getInt(false, edgeId, edgeIntAccess), "unexpected rating for mountainbike:scale=" + scaleString);
     }
 
 }

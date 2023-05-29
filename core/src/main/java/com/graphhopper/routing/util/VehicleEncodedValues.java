@@ -27,7 +27,7 @@ import java.util.List;
 import static com.graphhopper.routing.util.VehicleEncodedValuesFactory.*;
 
 public class VehicleEncodedValues {
-    public static final List<String> OUTDOOR_VEHICLES = Arrays.asList(BIKE, RACINGBIKE, MOUNTAINBIKE, FOOT, WHEELCHAIR);
+    public static final List<String> OUTDOOR_VEHICLES = Arrays.asList(BIKE, RACINGBIKE, MOUNTAINBIKE, FOOT, ROLLATOR, WHEELCHAIR, BLIND);
 
     private final String name;
     private final BooleanEncodedValue accessEnc;
@@ -48,11 +48,33 @@ public class VehicleEncodedValues {
         return new VehicleEncodedValues(name, accessEnc, speedEnc, priorityEnc, turnCostEnc);
     }
 
+    public static VehicleEncodedValues blind(PMap properties) {
+        String name = properties.getString("name", "blind");
+        int speedBits = properties.getInt("speed_bits", 4);
+        double speedFactor = properties.getDouble("speed_factor", 1);
+        boolean speedTwoDirections = properties.getBool("speed_two_directions", false);
+        int maxTurnCosts = properties.getInt("max_turn_costs", properties.getBool("turn_costs", false) ? 1 : 0);
+        BooleanEncodedValue accessEnc = VehicleAccess.create(name);
+        DecimalEncodedValue speedEnc = VehicleSpeed.create(name, speedBits, speedFactor, speedTwoDirections);
+        DecimalEncodedValue priorityEnc = VehiclePriority.create(name, 4, PriorityCode.getFactor(1), false);
+        DecimalEncodedValue turnCostEnc = maxTurnCosts > 0 ? TurnCost.create(name, maxTurnCosts) : null;
+        return new VehicleEncodedValues(name, accessEnc, speedEnc, priorityEnc, turnCostEnc);
+    }
+
     public static VehicleEncodedValues wheelchair(PMap properties) {
         if (properties.has("speed_two_directions"))
             throw new IllegalArgumentException("wheelchair always uses two directions");
         return foot(new PMap(properties)
                 .putObject("name", properties.getString("name", "wheelchair"))
+                .putObject("speed_two_directions", true)
+        );
+    }
+
+    public static VehicleEncodedValues rollator(PMap properties) {
+        if (properties.has("speed_two_directions"))
+            throw new IllegalArgumentException("wheelchair always uses two directions");
+        return foot(new PMap(properties)
+                .putObject("name", properties.getString("name", "rollator"))
                 .putObject("speed_two_directions", true)
         );
     }
@@ -75,7 +97,7 @@ public class VehicleEncodedValues {
     }
 
     public static VehicleEncodedValues mountainbike(PMap properties) {
-        return bike(new PMap(properties).putObject("name", properties.getString("name", "mtb")));
+        return bike(new PMap(properties).putObject("name", properties.getString("name", "mountainbike")));
     }
 
     public static VehicleEncodedValues car(PMap properties) {
